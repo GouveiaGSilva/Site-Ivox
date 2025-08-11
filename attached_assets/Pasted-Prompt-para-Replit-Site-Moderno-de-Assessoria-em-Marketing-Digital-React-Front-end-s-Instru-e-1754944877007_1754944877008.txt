@@ -1,0 +1,140 @@
+Prompt para Replit — Site Moderno de Assessoria em Marketing Digital (React, Front-end só)
+Instruções para o Replit:
+
+Crie um projeto React do zero com os seguintes requisitos para um site profissional de empresa de assessoria em marketing digital, focado em modernidade, segurança, inovação e usabilidade. O objetivo principal é que o site seja leve, front-end puro, pronto para deploy imediato (sem back-end, sem dependências extras além do React).
+
+Estrutura geral e funcionalidades:
+Framework: React (criar usando create-react-app ou equivalente, mas sem back-end).
+
+Estilos: Use CSS-in-JS (styled-components, emotion ou equivalente simples) ou CSS modular.
+
+Tema:
+
+Modo claro e modo escuro;
+
+Botão para alternar entre claro e escuro;
+
+Preferência de tema deve ser persistida localmente (localStorage).
+
+Idiomas:
+
+Suporte para Português (Brasil) e Inglês (US);
+
+Botão de toggle para alternar entre PT e EN, que muda todos os textos da interface;
+
+Utilize um sistema simples de tradução baseado em JSON para as strings;
+
+Preferência de idioma deve ser persistida localmente.
+
+Layout e Design:
+
+Layout responsivo e moderno (desktop e mobile);
+
+Navegação principal fixa no topo com menu simples e botões de troca de idioma e tema;
+
+Seções principais: Home (apresentação rápida), Serviços (detalhes da assessoria), Sobre Nós, Contato (formulário não funcional, só front-end).
+
+Componentização:
+
+Separe o site em componentes reutilizáveis e organizados;
+
+Evite dependências externas além do React para manter leveza e foco em front-end puro.
+
+Segurança:
+
+Código limpo e sem vulnerabilidades comuns em front-end;
+
+Evitar injeção de scripts e garantir que só o conteúdo seguro seja exibido.
+
+Deploy:
+
+Apenas front-end, nada de servidor ou back-end;
+
+Código preparado para deploy em plataformas como Replit, Netlify, Vercel etc;
+
+Todos os assets (imagens, fontes) devem ser otimizados e locais (não usar CDN externos);
+
+Use React Router para navegação SPA (Single Page Application).
+
+Extras modernos:
+
+Use hooks para estado e efeitos;
+
+Use Context API para gerenciar tema e idioma globalmente;
+
+Animações suaves na troca de tema e idioma;
+
+Acessibilidade básica (teclado, contrastes, roles, aria-labels).
+
+Passo a passo detalhado para o Replit criar o site:
+Configuração inicial: criar projeto React básico com index.js e App.js.
+
+Criar Contextos:
+
+ThemeContext: gerenciar tema claro/escuro com toggle e persistência em localStorage.
+
+LanguageContext: gerenciar idioma PT/EN com toggle e persistência.
+
+Componentes essenciais:
+
+Header: logo + menu de navegação + botões tema e idioma;
+
+Home: seção com slogan e chamada para ação;
+
+Services: lista com 3-5 serviços principais, cada um com título, descrição, ícone simples;
+
+About: texto sobre a empresa e missão;
+
+Contact: formulário simples com nome, email, mensagem e botão (não precisa enviar dados);
+
+Footer: dados de contato e redes sociais (ícones simples).
+
+Implementar toggle tema:
+
+Estilos globais com createGlobalStyle (se usar styled-components) ou CSS custom properties;
+
+Alternância que muda cores, fundos e fontes;
+
+Persistência em localStorage para lembrar escolha.
+
+Implementar toggle idioma:
+
+Criar arquivos JSON en.json e pt.json com todas as strings do site;
+
+Criar hook ou função para buscar string do idioma atual;
+
+Atualizar texto nos componentes ao trocar idioma dinamicamente;
+
+Persistir escolha em localStorage.
+
+Navegação SPA:
+
+Implementar React Router com rotas para as seções principais (/, /services, /about, /contact);
+
+Links no menu navegam sem reload.
+
+Responsividade:
+
+Usar media queries ou CSS flexbox/grid para adaptar layout em mobile/tablet/desktop.
+
+Testes básicos:
+
+Verificar alternância de tema e idioma funciona em reload;
+
+Testar navegação e responsividade.
+
+Otimizações para deploy:
+
+Remover códigos e logs desnecessários;
+
+Preparar package.json para build e start;
+
+Gerar build estático com npm run build.
+
+Entrega final:
+
+Todos os arquivos front-end prontos, sem dependência de servidor;
+
+Código limpo, organizado, comentado onde necessário;
+
+README simples com instruções para rodar e deploy.

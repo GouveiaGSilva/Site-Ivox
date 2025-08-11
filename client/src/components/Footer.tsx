@@ -1,164 +1,128 @@
-import { useLanguage } from '@/contexts/LanguageContext';
+import React from 'react';
+import { useTranslation } from '../hooks/useTranslation';
 
-export default function Footer() {
-  const { t } = useLanguage();
+export function Footer() {
+  const { t } = useTranslation();
 
-  const handleSmoothScroll = (targetId: string) => {
-    const target = document.getElementById(targetId);
-    if (target) {
-      const headerHeight = 80;
-      const targetPosition = target.offsetTop - headerHeight;
-      
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-    }
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <footer className="bg-gray-900 dark:bg-black text-white py-12">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="col-span-2">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
-                <i className="fas fa-rocket text-white text-xl"></i>
-              </div>
-              <span className="text-2xl font-bold">Ivox Scale</span>
-            </div>
-            <p className="text-gray-400 mb-6 leading-relaxed">
-              {t(
-                'Transformamos negócios através do marketing digital estratégico. Nossa missão é elevar sua presença online e gerar resultados mensuráveis para seu crescimento.',
-                'We transform businesses through strategic digital marketing. Our mission is to elevate your online presence and generate measurable results for your growth.'
-              )}
+    <footer className="bg-slate-900 dark:bg-slate-950 text-white py-12 border-t border-slate-800 dark:border-slate-700">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="col-span-1 md:col-span-2">
+            <h3 className="text-2xl font-bold text-gradient-primary mb-4">
+              Ivox Scale
+            </h3>
+            <p className="text-slate-400 mb-6 max-w-md">
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-primary text-white rounded-full flex items-center justify-center transition-colors"
+                className="text-slate-400 hover:text-white transition-colors duration-200"
+                aria-label="LinkedIn"
               >
-                <i className="fab fa-linkedin-in"></i>
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-primary text-white rounded-full flex items-center justify-center transition-colors"
+                className="text-slate-400 hover:text-white transition-colors duration-200"
+                aria-label="Instagram"
               >
-                <i className="fab fa-facebook-f"></i>
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.987 11.987s11.987-5.367 11.987-11.987C24.014 5.367 18.647.001 12.017.001zM8.448 16.988a4.821 4.821 0 01-4.821-4.821 4.821 4.821 0 014.821-4.821 4.821 4.821 0 014.821 4.821 4.821 4.821 0 01-4.821 4.821z"/>
+                </svg>
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-primary text-white rounded-full flex items-center justify-center transition-colors"
+                className="text-slate-400 hover:text-white transition-colors duration-200"
+                aria-label="Facebook"
               >
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-primary text-white rounded-full flex items-center justify-center transition-colors"
-              >
-                <i className="fab fa-youtube"></i>
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
               </a>
             </div>
           </div>
-          
-          {/* Quick Links */}
+
           <div>
-            <h3 className="text-lg font-bold mb-6">
-              {t('Links Rápidos', 'Quick Links')}
-            </h3>
-            <ul className="space-y-3">
+            <h4 className="text-lg font-semibold mb-4">{t('footer.services')}</h4>
+            <ul className="space-y-2 text-slate-400">
               <li>
                 <button
-                  onClick={() => handleSmoothScroll('home')}
-                  className="text-gray-400 hover:text-white transition-colors text-left"
+                  onClick={() => scrollToSection('services')}
+                  className="hover:text-white transition-colors duration-200"
                 >
-                  {t('Início', 'Home')}
+                  {t('footer.seo')}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleSmoothScroll('about')}
-                  className="text-gray-400 hover:text-white transition-colors text-left"
+                  onClick={() => scrollToSection('services')}
+                  className="hover:text-white transition-colors duration-200"
                 >
-                  {t('Sobre', 'About')}
+                  {t('footer.social')}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleSmoothScroll('services')}
-                  className="text-gray-400 hover:text-white transition-colors text-left"
+                  onClick={() => scrollToSection('services')}
+                  className="hover:text-white transition-colors duration-200"
                 >
-                  {t('Serviços', 'Services')}
+                  {t('footer.ads')}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleSmoothScroll('testimonials')}
-                  className="text-gray-400 hover:text-white transition-colors text-left"
+                  onClick={() => scrollToSection('services')}
+                  className="hover:text-white transition-colors duration-200"
                 >
-                  {t('Depoimentos', 'Testimonials')}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleSmoothScroll('contact')}
-                  className="text-gray-400 hover:text-white transition-colors text-left"
-                >
-                  {t('Contato', 'Contact')}
+                  {t('footer.content')}
                 </button>
               </li>
             </ul>
           </div>
-          
-          {/* Contact Info */}
+
           <div>
-            <h3 className="text-lg font-bold mb-6">
-              {t('Contato', 'Contact')}
-            </h3>
-            <ul className="space-y-3">
-              <li className="text-gray-400">
-                <i className="fas fa-envelope mr-2"></i>
-                <a
-                  href="mailto:contato@ivoxscale.com"
-                  className="hover:text-white transition-colors"
+            <h4 className="text-lg font-semibold mb-4">{t('footer.company')}</h4>
+            <ul className="space-y-2 text-slate-400">
+              <li>
+                <button
+                  onClick={() => scrollToSection('about')}
+                  className="hover:text-white transition-colors duration-200"
                 >
-                  contato@ivoxscale.com
+                  {t('footer.about')}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  {t('footer.contact')}
+                </button>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition-colors duration-200">
+                  {t('footer.blog')}
                 </a>
               </li>
-              <li className="text-gray-400">
-                <i className="fab fa-whatsapp mr-2"></i>
-                <span>{t('WhatsApp disponível', 'WhatsApp available')}</span>
-              </li>
-              <li className="text-gray-400">
-                <i className="fas fa-clock mr-2"></i>
-                <span>{t('Seg-Sex: 9h às 18h', 'Mon-Fri: 9am to 6pm')}</span>
+              <li>
+                <a href="#" className="hover:text-white transition-colors duration-200">
+                  {t('footer.careers')}
+                </a>
               </li>
             </ul>
           </div>
         </div>
-        
-        {/* Footer Bottom */}
-        <div className="border-t border-gray-800 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
-              {t(
-                '© 2024 Ivox Scale. Todos os direitos reservados.',
-                '© 2024 Ivox Scale. All rights reserved.'
-              )}
-            </p>
-            <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                {t('Política de Privacidade', 'Privacy Policy')}
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                {t('Termos de Uso', 'Terms of Use')}
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                {t('LGPD', 'GDPR')}
-              </a>
-            </div>
-          </div>
+
+        <div className="mt-12 pt-8 border-t border-slate-800 dark:border-slate-700 text-center text-slate-400">
+          <p>{t('footer.copyright')}</p>
         </div>
       </div>
     </footer>

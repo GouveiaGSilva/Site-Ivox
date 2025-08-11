@@ -1,45 +1,43 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type Language = 'pt' | 'en';
 
 interface LanguageContextType {
   language: Language;
   toggleLanguage: () => void;
-  t: (ptText: string, enText: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>(() => {
     if (typeof window !== 'undefined') {
-      return (localStorage.getItem('language') as Language) || 'pt';
+      const savedLanguage = localStorage.getItem('language') as Language;
+      return savedLanguage || 'pt';
     }
     return 'pt';
   });
 
-  const toggleLanguage = () => {
-    const newLanguage = language === 'pt' ? 'en' : 'pt';
-    setLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
-    document.documentElement.lang = newLanguage === 'pt' ? 'pt-BR' : 'en';
-  };
+  useEffect(() => {
+    localStorage.setItem('language', language);
+    document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en-US';
+  }, [language]);
 
-  const t = (ptText: string, enText: string) => {
-    return language === 'pt' ? ptText : enText;
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === 'pt' ? 'en' : 'pt');
   };
 
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
+    <LanguageContext.Provider value={{ language, toggleLanguage }}>
       {children}
     </LanguageContext.Provider>
   );
-};
+}
 
-export const useLanguage = () => {
+export function useLanguage() {
   const context = useContext(LanguageContext);
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
-};
+}
